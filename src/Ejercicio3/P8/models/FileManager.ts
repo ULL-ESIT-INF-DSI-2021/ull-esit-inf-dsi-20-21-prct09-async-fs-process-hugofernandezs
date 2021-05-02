@@ -252,21 +252,21 @@ export class FileManager {
           case 'rename':
             const existFile: boolean = this.fs_.existsSync(`${path}/${trigger}`);
             if (existFile == true) {
-              console.log(chalk.green('File ' + trigger + ' has been added!\n'));
+              console.log(chalk.green('Se ha añadido el fichero ' + trigger + '\n'));
             } else {
-              console.log(chalk.green('File ' + trigger + ' has been removed!\n'));
+              console.log(chalk.green('Se ha añadido el fichero ' + trigger + '\n'));
             }
             break;
           case 'change':
-            console.log(chalk.green('There was a change at ' + trigger + '\n'));
+            console.log(chalk.green('Se ha modificado el fichero ' + trigger + '\n'));
             break;
         }
 
         const file = this.fs_.readdirSync(dir);
-        console.log(chalk.blue(`The directory now contains: \n` + file + '\n'));
+        console.log(chalk.blue(`El contenido del directorio es: \n` + file + '\n'));
       });
     } else {
-      console.error(chalk.red(`${path} path, doesn´t exists!`));
+      console.error(chalk.red(`${path} no existe en el sistema de ficheros!`));
     }
   }
 }
