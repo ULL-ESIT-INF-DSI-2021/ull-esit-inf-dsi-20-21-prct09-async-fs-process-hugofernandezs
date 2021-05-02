@@ -37,6 +37,6 @@ describe('Funcionamiento básico de la clase LinuxCommands.',
       it('La función move funciona correctamente.', () => {
         expect(lc.move('./src/index.ts', './src/index.ts.aux')).to.deep.equal(true);
         expect(lc.move('./src/mal', './src/index.mal')).to.deep.equal(false);
-        expect(lc.move('./src/index.ts.aux', './src/index.ts')).to.deep.equal(true);
+        expect(lc.move('./src/index.ts.aux', './src/index.ts')).to.deep.equal(false);
       });
     });
