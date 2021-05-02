@@ -1,5 +1,5 @@
-import * as yargs from 'yargs';
-import * as chalk from 'chalk';
+import yargs from 'yargs';
+import chalk from 'chalk';
 import {FileManager} from './FileManager';
 
 
@@ -8,27 +8,27 @@ yargs.command( {
   describe: 'Returns the information of the file',
   builder: {
     file: {
-      describe: 'File to analice',
+      describe: 'Nombre del fichero a analizar',
       demandOption: true,
       type: 'string',
     },
     pipe: {
-      describe: 'Pipe to use',
+      describe: 'Usar o no un pipe',
       demandOption: true,
       type: 'string',
     },
     lines: {
-      describe: 'User option',
+      describe: 'Contar lineas',
       demandOption: false,
       type: 'string',
     },
     words: {
-      describe: 'User option',
+      describe: 'Contar palabras',
       demandOption: false,
       type: 'string',
     },
     chars: {
-      describe: 'User option',
+      describe: 'Contar letras',
       demandOption: false,
       type: 'string',
     },
@@ -46,20 +46,26 @@ yargs.command( {
         options.push('chars');
       }
       if (options.length === 0) {
-        console.log(/*chalk.red*/('Introduzca al menos una opción.'));
+        console.log(chalk.red('Introduzca al menos una opción.'));
         return;
       }
       const fm = new FileManager(argv.file);
       switch (argv.pipe) {
         case "yes": {
           fm.getInfoPipe(options);
+          break;
         }
         case "no": {
           fm.getInfo(options);
+          break;
+        }
+        default: {
+          console.log(chalk.red("Error en --pipe. Introduzca 'yes' o 'no'."));
+          break;
         }
       }
     } else {
-      console.log(/*chalk.red*/(`Debe introducir el nombre del fichero.`));
+      console.log(chalk.red(`Debe introducir el nombre del fichero.`));
     }
   },
 });
