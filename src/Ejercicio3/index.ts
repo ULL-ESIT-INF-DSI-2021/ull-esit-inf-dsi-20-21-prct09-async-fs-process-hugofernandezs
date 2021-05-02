@@ -15,14 +15,9 @@ yargs.command( {
       demandOption: true,
       type: 'string',
     },
-    name: {
-      describe: 'Nombre del fichero',
-      demandOption: true,
-      type: 'string',
-    },
   },
   handler(argv) {
-    if (typeof argv.route === "string" && typeof argv.name === "string") {
+    if (typeof argv.route === "string") {
       fm.watch(argv.route);
     }
   },
