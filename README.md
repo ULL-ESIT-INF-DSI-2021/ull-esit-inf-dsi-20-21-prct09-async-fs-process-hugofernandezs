@@ -45,7 +45,7 @@ Realice una traza de ejecución de este programa mostrando, paso a paso, el cont
 
 ### Desarrollo:
 Hemos realizado la traza del ejercicio siguiendo los apuntes de clase y con la ayuda de recursos externos y el resultado ha sido el siguiente:
-```markdown
+
 ### Traza inicial:
 **Se inician todas las colas vacías.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
@@ -148,4 +148,3 @@ Hemos realizado la traza del ejercicio siguiendo los apuntes de clase y con la a
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  |  | `File ${filename} has been modified somehow` |
-```
