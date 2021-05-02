@@ -37,117 +37,116 @@ if (process.argv.length !== 3) {
 
 ## Traza del programa
 
-<p align="center">
 ### Traza inicial:
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se inician todas las colas vacías.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  |  |  |
 
 
 ### Primer paso:
-**Introducimos el main del programa en la pila, la cual inicialmente es anónima.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se inicia la función anónima main entrando en la pila.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `mainAnonymous()` |  |  |  |
 
 
 ### Segundo paso:
-**Tras cargarse las librerias y los argumentos, se pasa el access a la API.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se cargan las librerías y los argumentos y se introduce a acces en la API.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `mainAnonymous()` | `access()` |  |  |
 
 
 ### Tercer paso:
-**La función principal sale de la pila, sale el access de la **API** y entra el callback en la cola de tareas.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**La función main termina y acces sale de la API. Callback entra en la cola de tareas.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  | `callback()` |  |
 
 
 ### Cuarto paso:
-**El callback es añadido a la pila, se invoca y retorna un valor.** 
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**El callback se añade a la pila para ejecutar la función y retornar un valor.** 
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(Starting to watch file ${filename})` |  |  |  |
 
 
 ### Quinto paso:
-**Una vez retorna el valor, la llamada sale de la pila.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**La función finaliza y es sacada de la pila y pasa a la salida.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `console.log(Starting to watch file ${filename})` |
 
 
 ### Sexto paso:
-**Una vez retorna el valor, la llamada sale de la pila.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**En el output se retorna el valor calculado por la función**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `Starting to watch file ${filename}` |
 
 
 ### Séptimo paso:
-**Entra la función watch() en la pila.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Entra la función *watch()* en la pila para ejecutarse.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `watch()` |  |  |  |
 
 
 ### Octavo paso:
-**La función watch() pasa a la **API**, pero llamando a watcher.on().**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Tras ejecutarse la función *watch()*, esta llama a *watcher.on()* y se añade a la API.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` | `watcher.on()` |  |  |
 
 
 ### Noveno paso:
-**Se llama a la función y se retorna un valor.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se ejecuta la siguiente función añadiéndola a la pila.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(File ${filename} is no longer watched)` |  |  |  |
 
 
 ### Décimo paso:
-**Una vez retorna el valor, la llamada sale de la pila.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**La función se ejecuta y retorna el valor en el output.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `File ${filename} is no longer watched` |
 
 
 ### Onceavo paso:
-**Ahora nuestro callback() que será la función watcher.on() pasará a la cola de tareas.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**La función *watcher.on()* se convierte en el callback y pasa a la cola para ejecutarse.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  | `callback()` |  |
 
 
 ### Doceavo paso:
-**Como la pila esta vacia, pasaremos a ejecutar el callback().**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se añade la siguiente función de la cola, *callback()* a la pila, pues la pila está vacía, y se ejecuta.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 
 
 ### Treceavo paso:
-**El callback es añadido a la pila, se invoca y retorna un valor.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**Se ejecuta la siguiente función añadiéndola a la pila.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(File ${filename} has been modified somehow)` |  |  |  |
 
 
 ### Catorceavo paso:
-**El callback es añadido a la pila, se invoca y retorna un valor.**
-| **LIFO** | **API** | **QUEUE** | **OUTPUT** |
+**La función ejecutada retorna un valor en el output.**
+| **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
-|  |  |  | File ${filename} has been modified somehow |
+|  |  |  | `File ${filename} has been modified somehow` |
 
-.
-Esto lo repetiremos hasta que termine nuestro proceso, que según el código proporcionado es cuando cuando el tamaño del mismo sea igual a 2, o más bien, distinto de 3, mientras va incrementando.
-</p>
+
+Estos pasos se seguirán repitiendo hasta que finalice el programa.
