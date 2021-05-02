@@ -32,7 +32,7 @@ describe('Funcionamiento básico de la clase LinuxCommands.',
       it('La función remove funciona correctamente.', () => {
         expect(lc.remove('./src/auxDir')).to.deep.equal(true);
         expect(lc.remove('./src/auxDir')).to.deep.equal(false);
-        expect(lc.remove('./src/index.ts.aux')).to.deep.equal(false);
+        expect(lc.remove('./src/index.ts.aux')).to.deep.equal(true);
       });
       it('La función move funciona correctamente.', () => {
         expect(lc.move('./src/index.ts', './src/index.ts.aux')).to.deep.equal(true);
