@@ -43,93 +43,107 @@ if (process.argv.length !== 3) {
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  |  |  |
 
+
 ### Primer paso:
-#### Introducimos el main del programa en la pila, la cual inicialmente es anónima.
+**Introducimos el main del programa en la pila, la cual inicialmente es anónima.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `mainAnonymous()` |  |  |  |
 
+
 ### Segundo paso:
-#### Tras cargarse las librerias y los argumentos, se pasa el access a la API.
+**Tras cargarse las librerias y los argumentos, se pasa el access a la API.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `mainAnonymous()` | `access()` |  |  |
 
+
 ### Tercer paso:
-#### La función principal sale de la pila, sale el access de la **API** y entra el callback en la cola de tareas.
+**La función principal sale de la pila, sale el access de la **API** y entra el callback en la cola de tareas.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  | `callback()` |  |
 
+
 ### Cuarto paso:
-#### El callback es añadido a la pila, se invoca y retorna un valor. 
+**El callback es añadido a la pila, se invoca y retorna un valor.** 
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(Starting to watch file ${filename})` |  |  |  |
 
+
 ### Quinto paso:
-#### Una vez retorna el valor, la llamada sale de la pila. 
+**Una vez retorna el valor, la llamada sale de la pila.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `console.log(Starting to watch file ${filename})` |
 
+
 ### Sexto paso:
-#### Una vez retorna el valor, la llamada sale de la pila. 
+**Una vez retorna el valor, la llamada sale de la pila.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `Starting to watch file ${filename}` |
 
+
 ### Séptimo paso:
-#### Entra la función watch() en la pila. 
+**Entra la función watch() en la pila.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `watch()` |  |  |  |
 
+
 ### Octavo paso:
-#### La función watch() pasa a la **API**, pero llamando a watcher.on(). 
+**La función watch() pasa a la **API**, pero llamando a watcher.on().**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` | `watcher.on()` |  |  |
 
+
 ### Noveno paso:
-#### Se llama a la función y se retorna un valor. 
+**Se llama a la función y se retorna un valor.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(File ${filename} is no longer watched)` |  |  |  |
 
+
 ### Décimo paso:
-#### Una vez retorna el valor, la llamada sale de la pila. 
+**Una vez retorna el valor, la llamada sale de la pila.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 |  |  |  | `File ${filename} is no longer watched` |
 
+
 ### Onceavo paso:
-#### Ahora nuestro callback() que será la función watcher.on() pasará a la cola de tareas. 
+**Ahora nuestro callback() que será la función watcher.on() pasará a la cola de tareas.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  | `callback()` |  |
 
+
 ### Doceavo paso:
-#### Como la pila esta vacia, pasaremos a ejecutar el callback(). 
+**Como la pila esta vacia, pasaremos a ejecutar el callback().**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 
+
 ### Treceavo paso:
-#### El callback es añadido a la pila, se invoca y retorna un valor. 
+**El callback es añadido a la pila, se invoca y retorna un valor.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 | `console.log(File ${filename} has been modified somehow)` |  |  |  |
 
+
 ### Catorceavo paso:
-#### El callback es añadido a la pila, se invoca y retorna un valor. 
+**El callback es añadido a la pila, se invoca y retorna un valor.**
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  |  | File ${filename} has been modified somehow |
