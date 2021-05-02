@@ -74,14 +74,6 @@ if (process.argv.length !== 3) {
 
 
 ### Quinto paso:
-**La función finaliza y es sacada de la pila y pasa a la salida.**
-| **STACK** | **API** | **QUEUE** | **OUTPUT** |
-| ---------------- | ---------------- | ---------------- | ---------------- |
-| `callback()` |  |  |  |
-|  |  |  | `console.log(Starting to watch file ${filename})` |
-
-
-### Sexto paso:
 **En el output se retorna el valor calculado por la función**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -89,7 +81,7 @@ if (process.argv.length !== 3) {
 |  |  |  | `Starting to watch file ${filename}` |
 
 
-### Séptimo paso:
+### Sexto paso:
 **Entra la función *watch()* en la pila para ejecutarse.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -97,14 +89,14 @@ if (process.argv.length !== 3) {
 | `watch()` |  |  |  |
 
 
-### Octavo paso:
+### Séptimo paso:
 **Tras ejecutarse la función *watch()*, esta llama a *watcher.on()* y se añade a la API.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` | `watcher.on()` |  |  |
 
 
-### Noveno paso:
+### Octavo paso:
 **Se ejecuta la siguiente función añadiéndola a la pila.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -112,7 +104,7 @@ if (process.argv.length !== 3) {
 | `console.log(File ${filename} is no longer watched)` |  |  |  |
 
 
-### Décimo paso:
+### Noveno paso:
 **La función se ejecuta y retorna el valor en el output.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -120,21 +112,21 @@ if (process.argv.length !== 3) {
 |  |  |  | `File ${filename} is no longer watched` |
 
 
-### Onceavo paso:
+### Décimo paso:
 **La función *watcher.on()* se convierte en el callback y pasa a la cola para ejecutarse.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 |  |  | `callback()` |  |
 
 
-### Doceavo paso:
+### Onceavo paso:
 **Se añade la siguiente función de la cola, *callback()* a la pila, pues la pila está vacía, y se ejecuta.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
 | `callback()` |  |  |  |
 
 
-### Treceavo paso:
+### Doceavo paso:
 **Se ejecuta la siguiente función añadiéndola a la pila.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -142,7 +134,7 @@ if (process.argv.length !== 3) {
 | `console.log(File ${filename} has been modified somehow)` |  |  |  |
 
 
-### Catorceavo paso:
+### Treceavo paso:
 **La función ejecutada retorna un valor en el output.**
 | **STACK** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
