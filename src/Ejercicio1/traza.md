@@ -37,7 +37,7 @@ if (process.argv.length !== 3) {
 
 ## Traza del programa
 
-
+<p align="center">
 ### Traza inicial:
 | **LIFO** | **API** | **QUEUE** | **OUTPUT** |
 | ---------------- | ---------------- | ---------------- | ---------------- |
@@ -150,3 +150,4 @@ if (process.argv.length !== 3) {
 
 .
 Esto lo repetiremos hasta que termine nuestro proceso, que según el código proporcionado es cuando cuando el tamaño del mismo sea igual a 2, o más bien, distinto de 3, mientras va incrementando.
+</p>
