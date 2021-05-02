@@ -246,24 +246,24 @@ export class FileManager {
     if (existRoute == true) {
       console.log(chalk.blue(`Contenido inicial de ${path}: \n` + file + '\n'));
 
-      this.fs_.watch(dir, (event: any, trigger: string) => {
-        console.log('Se han producido cambios en el directorio!');
+      this.fs_.watch(dir, (event: any, content: string) => {
+        console.log(chalk.green('Se han producido cambios en el directorio!:'));
         switch (event) {
           case 'rename':
-            const existFile: boolean = this.fs_.existsSync(`${path}/${trigger}`);
+            const existFile: boolean = this.fs_.existsSync(`${path}/${content}`);
             if (existFile == true) {
-              console.log(chalk.green('Se ha añadido el fichero ' + trigger + '\n'));
+              console.log(chalk.green('Se ha añadido el fichero ' + content + '\n'));
             } else {
-              console.log(chalk.green('Se ha añadido el fichero ' + trigger + '\n'));
+              console.log(chalk.green('Se ha eliminado el fichero ' + content + '\n'));
             }
             break;
           case 'change':
-            console.log(chalk.green('Se ha modificado el fichero ' + trigger + '\n'));
+            console.log(chalk.green('Se ha modificado el fichero ' + content + '\n'));
             break;
         }
 
         const file = this.fs_.readdirSync(dir);
-        console.log(chalk.blue(`El contenido del directorio es: \n` + file + '\n'));
+        console.log(chalk.green(`El contenido del directorio es: \n` + file + '\n'));
       });
     } else {
       console.error(chalk.red(`${path} no existe en el sistema de ficheros!`));
